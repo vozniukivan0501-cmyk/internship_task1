@@ -32,7 +32,7 @@ class FeedForwardNN(MnistClassifierInterface):
                 y_train: array-like training data expected shape (n_samples)
         """
 
-        self.model.fit(X_train, y_train, epochs=10, batch_size=64)
+        self.model.fit(X_train, y_train, epochs=5, batch_size=64)
 
     def predict(self, X_test):
 
