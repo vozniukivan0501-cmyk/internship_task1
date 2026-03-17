@@ -41,7 +41,7 @@ class ConvolutionalNN(MnistClassifierInterface):
 
         X_train = np.expand_dims(X_train, axis=3)
 
-        self.model.fit(X_train, y_train, epochs=10, batch_size=64)
+        self.model.fit(X_train, y_train, epochs=5, batch_size=64)
 
 
     def predict(self, X_test):
