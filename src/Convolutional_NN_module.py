@@ -2,7 +2,7 @@ import numpy as np
 
 from MnistClassifierInterface_module import MnistClassifierInterface
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Conv2D, MaxPooling2D, Flatten
+from tensorflow.keras.layers import Dense, Conv2D, MaxPooling2D, Flatten, Input
 
 
 class ConvolutionalNN(MnistClassifierInterface):
@@ -15,7 +15,8 @@ class ConvolutionalNN(MnistClassifierInterface):
         """
 
         self.model = Sequential([
-            Conv2D(filters=32, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)),
+            Input(shape=(28, 28, 1)),
+            Conv2D(filters=32, kernel_size=(3, 3), activation='relu'),
             MaxPooling2D(pool_size=(2, 2), strides= 2),
             Conv2D(filters=64, kernel_size=(3, 3), activation='relu'),
             MaxPooling2D(pool_size=(2, 2), strides= 2),
@@ -41,7 +42,7 @@ class ConvolutionalNN(MnistClassifierInterface):
 
         X_train = np.expand_dims(X_train, axis=3)
 
-        self.model.fit(X_train, y_train, epochs=5, batch_size=64)
+        self.model.fit(X_train, y_train, epochs=5, batch_size=64, verbose=2)
 
 
     def predict(self, X_test):

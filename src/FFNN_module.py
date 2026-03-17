@@ -1,6 +1,6 @@
 from MnistClassifierInterface_module import MnistClassifierInterface
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Flatten
+from tensorflow.keras.layers import Dense, Flatten, Input
 import numpy as np
 
 class FeedForwardNN(MnistClassifierInterface):
@@ -14,7 +14,8 @@ class FeedForwardNN(MnistClassifierInterface):
         """
 
         self.model = Sequential([
-            Flatten(input_shape=(28, 28)),
+            Input(shape=(28, 28)),
+            Flatten(),
             Dense(256, activation='relu'),
             Dense(64, activation='relu'),
             Dense(10, activation='softmax'),
@@ -32,7 +33,7 @@ class FeedForwardNN(MnistClassifierInterface):
                 y_train: array-like training data expected shape (n_samples)
         """
 
-        self.model.fit(X_train, y_train, epochs=5, batch_size=64)
+        self.model.fit(X_train, y_train, epochs=5, batch_size=64, verbose=2)
 
     def predict(self, X_test):
 
